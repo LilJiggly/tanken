@@ -1,0 +1,17 @@
+{
+  "lastUpdated": null,
+  "stations": {
+    "tinq_weesp_hogeweyselaan": {
+      "name": "TinQ Weesp – Hogeweyselaan",
+      "fuel": {
+        "e10": []
+      }
+    },
+    "tango_weesp_hogeweyselaan": {
+      "name": "Tango Weesp – Hogeweyselaan",
+      "fuel": {
+        "e10": []
+      }
+    }
+  }
+}
