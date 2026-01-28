@@ -165,7 +165,7 @@ function updateChart() {
   chart.update();
 
   document.getElementById("rangeLabel").textContent =
-    `${currentView.toUpperCase()} – ${startOf(currentView, currentDate).toLocaleDateString()}`;
+    `${currentView.toUpperCase()} – ${startOf(currentView, currentDate).toLocaleDateString("nl-NL")}`;
 }
 
 function updateTodayPrices() {
