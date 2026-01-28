@@ -4,45 +4,25 @@
     "tinq_weesp_hogeweyselaan": {
       "name": "TinQ Weesp – Hogeweyselaan",
       "fuel": {
-        "e10": [
-          {
-            "date": "2026-01-28",
-            "price": 1.949
-          }
-        ]
+        "e10": []
       }
     },
     "tango_weesp_hogeweyselaan": {
       "name": "Tango Weesp – Hogeweyselaan",
       "fuel": {
-        "e10": [
-          {
-            "date": "2026-01-28",
-            "price": 1.929
-          }
-        ]
+        "e10": []
       }
     },
     "bp_weesp": {
       "name": "BP Weesp",
       "fuel": {
-        "e10": [
-          {
-            "date": "2026-01-28",
-            "price": 2.029
-          }
-        ]
+        "e10": []
       }
     },
     "esso_express_weesp": {
       "name": "ESSO Express Weesp",
       "fuel": {
-        "e10": [
-          {
-            "date": "2026-01-28",
-            "price": 1.949
-          }
-        ]
+        "e10": []
       }
     }
   }

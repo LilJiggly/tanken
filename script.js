@@ -122,6 +122,18 @@ function updateChart() {
     currentDate,
   );
 
+  const bp = filterData(
+    priceData.stations.bp_weesp.fuel.e10,
+    currentView,
+    currentDate,
+  );
+
+  const esso = filterData(
+    priceData.stations.esso_express_weesp.fuel.e10,
+    currentView,
+    currentDate,
+  );
+
   // 1. Alle datums verzamelen
   const allDates = generateDatesForView(currentView, currentDate);
 
@@ -135,8 +147,9 @@ function updateChart() {
   chart.data.labels = allDates;
 
   chart.data.datasets[0].data = allDates.map((date) => priceFor(tinq, date));
-
   chart.data.datasets[1].data = allDates.map((date) => priceFor(tango, date));
+  chart.data.datasets[2].data = allDates.map((date) => priceFor(bp, date));
+  chart.data.datasets[3].data = allDates.map((date) => priceFor(esso, date));
 
   const isDayView = currentView === "day";
 
@@ -216,6 +229,16 @@ fetch("prices.json")
           },
           {
             label: "Tango Weesp – Hogeweyselaan",
+            data: [],
+            tension: 0.3,
+          },
+          {
+            label: "BP Weesp",
+            data: [],
+            tension: 0.3,
+          },
+          {
+            label: "ESSO Express Weesp",
             data: [],
             tension: 0.3,
           },
