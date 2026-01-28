@@ -4,6 +4,27 @@
 }
 
 body {
+  font-family: system-ui, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 2rem;
   margin: 0em;
-  font-family: sofia pro;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+#status {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+pre {
+  background: #020617;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
