@@ -4,6 +4,7 @@ let chart;
 let priceData;
 
 // ---------- DATE HELPERS ----------
+
 function todayString() {
   const d = new Date();
   return (
@@ -157,19 +158,37 @@ function updateChart() {
 function updateTodayPrices() {
   const today = todayString();
 
-  const tinqToday = priceData.stations.tinq_weesp_hogeweyselaan.fuel.e10.find(
-    (e) => e.date === today,
-  );
+  const stations = [
+    {
+      id: "tinq_weesp_hogeweyselaan",
+      label: "TinQ",
+      el: "tinqPrice",
+    },
+    {
+      id: "tango_weesp_hogeweyselaan",
+      label: "Tango",
+      el: "tangoPrice",
+    },
+    {
+      id: "bp_weesp",
+      label: "BP",
+      el: "BPPrice",
+    },
+    {
+      id: "esso_express_weesp",
+      label: "ESSO",
+      el: "ESSOPrice",
+    },
+  ];
 
-  const tangoToday = priceData.stations.tango_weesp_hogeweyselaan.fuel.e10.find(
-    (e) => e.date === today,
-  );
+  stations.forEach((station) => {
+    const data = priceData.stations[station.id]?.fuel.e10.find(
+      (e) => e.date === today,
+    );
 
-  document.getElementById("tinqPrice").textContent =
-    "TinQ vandaag: €" + (tinqToday?.price ?? "–");
-
-  document.getElementById("tangoPrice").textContent =
-    "Tango vandaag: €" + (tangoToday?.price ?? "–");
+    document.getElementById(station.el).textContent =
+      `${station.label}: €${data?.price ?? "–"}`;
+  });
 }
 
 // ---------- INIT ----------
