@@ -4,13 +4,23 @@
     "tinq_weesp_hogeweyselaan": {
       "name": "TinQ Weesp – Hogeweyselaan",
       "fuel": {
-        "e10": []
+        "e10": [
+          {
+            "date": "2026-01-28",
+            "price": 1.949
+          }
+        ]
       }
     },
     "tango_weesp_hogeweyselaan": {
       "name": "Tango Weesp – Hogeweyselaan",
       "fuel": {
-        "e10": []
+        "e10": [
+          {
+            "date": "2026-01-28",
+            "price": 1.929
+          }
+        ]
       }
     }
   }
