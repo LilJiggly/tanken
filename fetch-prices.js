@@ -2,66 +2,50 @@ import fs from "fs";
 import fetch from "node-fetch";
 import { JSDOM } from "jsdom";
 
-const MAX_DAYS = 365; // zet op null voor onbeperkt
-
 const FILE = "./prices.json";
 const TODAY = new Date().toISOString().slice(0, 10);
 
-const STATIONS = {
-  tinq_weesp_hogeweyselaan: {
-    url: "https://www.tinq.nl/tankstations/weesp-hogeweyselaan",
-    selector: ".price, .fuel-price",
-  },
-  tango_weesp_hogeweyselaan: {
-    url: "https://www.tango.nl/stations/tango-weesp",
-    selector: ".price, .fuel-price",
-  },
+const TINQ = {
+  id: "tinq_weesp_hogeweyselaan",
+  url: "https://www.tinq.nl/tankstations/weesp-hogeweyselaan",
+  selector: ".field--name-field-prices-price-pump",
 };
 
-// -----------------------------
-
-function cleanPrice(text) {
-  return Number(
-    text
-      .replace("€", "")
-      .replace(",", ".")
-      .replace(/[^0-9.]/g, ""),
-  );
-}
-
-function limitDays(array) {
-  if (!MAX_DAYS) return array;
-  return array.slice(-MAX_DAYS);
-}
-
-async function fetchPrice(url, selector) {
-  const res = await fetch(url);
+async function fetchTinQPrice() {
+  const res = await fetch(TINQ.url);
   const html = await res.text();
+
   const dom = new JSDOM(html);
-  const el = dom.window.document.querySelector(selector);
+  const el = dom.window.document.querySelector(TINQ.selector);
 
   if (!el) {
-    throw new Error(`Prijs niet gevonden op ${url}`);
+    throw new Error("TinQ prijs-element niet gevonden");
   }
 
-  return cleanPrice(el.textContent);
+  const raw = el.getAttribute("content") || el.textContent;
+
+  const price = Number(raw.replace(",", ".").replace(/[^0-9.]/g, ""));
+
+  if (Number.isNaN(price)) {
+    throw new Error("TinQ prijs is geen geldig nummer");
+  }
+
+  return price;
 }
 
 async function run() {
   const data = JSON.parse(fs.readFileSync(FILE, "utf8"));
 
-  for (const [id, station] of Object.entries(STATIONS)) {
-    const price = await fetchPrice(station.url, station.selector);
-    const history = data.stations[id].fuel.e10;
+  const price = await fetchTinQPrice();
+  const history = data.stations[TINQ.id].fuel.e10;
 
-    const exists = history.some((d) => d.date === TODAY);
-    if (!exists) {
-      history.push({ date: TODAY, price });
-      data.stations[id].fuel.e10 = limitDays(history);
-      console.log(`${id}: €${price}`);
-    } else {
-      console.log(`${id}: vandaag al aanwezig`);
-    }
+  const exists = history.some((entry) => entry.date === TODAY);
+
+  if (!exists) {
+    history.push({ date: TODAY, price });
+    console.log(`✅ TinQ prijs toegevoegd: €${price}`);
+  } else {
+    console.log("ℹ️ TinQ prijs voor vandaag bestaat al");
   }
 
   data.lastUpdated = TODAY;
@@ -69,6 +53,6 @@ async function run() {
 }
 
 run().catch((err) => {
-  console.error(err);
+  console.error("❌ Fout:", err.message);
   process.exit(1);
 });
