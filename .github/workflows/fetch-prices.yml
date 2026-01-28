@@ -5,7 +5,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "0 6 * * *" # 06:00 UTC ≈ 08:00 NL
+  workflow_dispatch:
 
 jobs:
   fetch:
@@ -20,15 +21,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install deps
-        run: |
-          npm init -y
-          npm install node-fetch jsdom
+      - name: Install dependencies
+        run: npm install
 
       - name: Fetch prices
         run: node fetch-prices.js
 
-      - name: Commit changes
+      - name: Commit updated prices.json
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
