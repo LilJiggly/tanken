@@ -11,6 +11,12 @@ body {
   margin: 0em;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 h1 {
   margin-bottom: 1rem;
 }
@@ -27,4 +33,63 @@ pre {
   overflow-x: auto;
   font-size: 0.9rem;
   line-height: 1.4;
+}
+
+#updated {
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.chart-container {
+  max-width: 1296px;
+  background-color: white;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-buttons button,
+.nav-buttons button {
+  background: #1e293b;
+  color: #e5e7eb;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-buttons button.active {
+  background: #38bdf8;
+  color: #020617;
+}
+
+#rangeLabel {
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.day-prices {
+  display: flex;
+  gap: 1rem;
+}
+
+.price-box {
+  background: #1e293b;
+  padding: 1rem;
+  border-radius: 6px;
+  min-width: 200px;
 }

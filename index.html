@@ -2,16 +2,44 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <title>Tanken Weesp – Debug</title>
+    <title>Brandstofprijzen Weesp</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>⛽ Brandstofprijzen Weesp</h1>
+    <!-- <h1>⛽ Brandstofprijzen Weesp</h1> -->
 
-    <p id="status">Data laden…</p>
+    <p id="updated"></p>
+    <main>
+      <div class="controls">
+        <div class="view-buttons">
+          <button data-view="day">Dag</button>
+          <button data-view="week">Week</button>
+          <button data-view="month" class="active">Maand</button>
+          <button data-view="quarter">Kwartaal</button>
+          <button data-view="year">Jaar</button>
+        </div>
 
-    <pre id="output"></pre>
+        <div class="nav-buttons">
+          <button id="prev">◀︎</button>
+          <button id="today">Vandaag</button>
+          <button id="next">▶︎</button>
+        </div>
 
+        <p id="rangeLabel"></p>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="priceChart"></canvas>
+      </div>
+
+      <div class="day-prices">
+        <h2>Live Prijs van vandaag</h2>
+        <div id="tinqPrice" class="price-box"></div>
+        <div id="tangoPrice" class="price-box"></div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

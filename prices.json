@@ -1,16 +1,42 @@
 {
-  "lastUpdated": null,
+  "lastUpdated": "2026-01-28",
   "stations": {
     "tinq_weesp_hogeweyselaan": {
       "name": "TinQ Weesp – Hogeweyselaan",
       "fuel": {
-        "e10": []
+        "e10": [
+          {
+            "date": "2026-01-28",
+            "price": 1.949
+          }
+        ]
       }
     },
     "tango_weesp_hogeweyselaan": {
       "name": "Tango Weesp – Hogeweyselaan",
       "fuel": {
-        "e10": []
+        "e10": [
+          {
+            "date": "2026-01-26",
+            "price": 1.959
+          },
+          {
+            "date": "2026-01-27",
+            "price": 1.949
+          },
+          {
+            "date": "2026-01-28",
+            "price": 1.939
+          },
+          {
+            "date": "2026-01-29",
+            "price": 1.929
+          },
+          {
+            "date": "2026-01-30",
+            "price": 1.919
+          }
+        ]
       }
     }
   }
