@@ -155,4 +155,8 @@ button {
     font-size: 1rem;
     color: red;
   }
+
+  .price-box {
+    font-size: 1rem;
+  }
 }

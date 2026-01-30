@@ -246,6 +246,7 @@ fetch("prices.json")
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             min: 1.5,
